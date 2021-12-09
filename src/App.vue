@@ -1,6 +1,18 @@
 <template>
-  <div>1</div>
+  <Main />
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import Main from './views/main.vue'
+
+export default defineComponent({
+  name: 'APP',
+  components: {
+    Main
+  }
+})
+</script>
 
 <style>
 #app {
