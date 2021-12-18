@@ -16,7 +16,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue'
+import {
+  defineComponent,
+  reactive,
+  toRefs,
+  onBeforeMount,
+  onMounted,
+  onBeforeUpdate,
+  onUpdated,
+  onUnmounted
+} from 'vue'
 
 export default defineComponent({
   name: 'orderCom',
@@ -38,6 +47,21 @@ export default defineComponent({
       selectGirlFunc(key: number): void {
         data.selectGirl = data.girls[key]
       }
+    })
+    onBeforeMount(() => {
+      console.log('2-组件挂载到页面之前执行------onBeforeMount')
+    })
+    onMounted(() => {
+      console.log('3-组件挂载之后执行-----onMounted')
+    })
+    onBeforeUpdate(() => {
+      console.log('4-组件更新之前调用----onBeforeUpdate')
+    })
+    onUpdated(() => {
+      console.log('5-组件更新之前调用----onUpdated')
+    })
+    onUnmounted(() => {
+      console.log('6-组件卸载之前调用----onUnmounted')
     })
     const state = toRefs(data)
     return {
