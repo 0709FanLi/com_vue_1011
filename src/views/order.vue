@@ -16,20 +16,32 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, reactive, toRefs } from 'vue'
 
 export default defineComponent({
   name: 'orderCom',
   setup() {
-    const girls = ref(['aaa', 'bbb', 'ccc'])
-    const selectGirl = ref('')
-    function selectGirlFunc(key: number): void {
-      selectGirl.value = girls.value[key]
+    // const girls = ref(['aaa', 'bbb', 'ccc'])
+    // const selectGirl = ref('')
+    // function selectGirlFunc(key: number): void {
+    //   selectGirl.value = girls.value[key]
+    // }
+    interface dataProps {
+      girls: string[]
+      selectGirl: string
+      // eslint-disable-next-line no-unused-vars
+      selectGirlFunc: (key: number) => void
     }
+    const data: dataProps = reactive({
+      girls: ['aaa', 'bbb', 'ccc'],
+      selectGirl: 'aaa',
+      selectGirlFunc(key: number): void {
+        data.selectGirl = data.girls[key]
+      }
+    })
+    const state = toRefs(data)
     return {
-      girls,
-      selectGirlFunc,
-      selectGirl
+      ...state
     }
   }
 })
