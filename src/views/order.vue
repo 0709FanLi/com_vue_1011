@@ -24,7 +24,9 @@ import {
   onMounted,
   onBeforeUpdate,
   onUpdated,
-  onUnmounted
+  onUnmounted,
+  onRenderTracked,
+  onRenderTriggered
 } from 'vue'
 
 export default defineComponent({
@@ -62,6 +64,14 @@ export default defineComponent({
     })
     onUnmounted(() => {
       console.log('6-组件卸载之前调用----onUnmounted')
+    })
+    onRenderTracked((event) => {
+      console.log('状态触发组件')
+      console.log(event)
+    })
+    onRenderTriggered((event) => {
+      console.log('状态触发组件狙击枪')
+      console.log(event)
     })
     const state = toRefs(data)
     return {
